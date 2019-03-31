@@ -1,0 +1,15 @@
+{
+	"plugin-data":
+	{
+		"name": "Atom Feed",
+		"description": "Creates an Atom web syndication feed of your site.<br>URL: http://example.com/feed.atom"
+	},
+	"atom-feed-copyright": "Atom Feed Copyright",
+	"atom-feed-copyright-tip": "More information about <a href=\"https://wikipedia.org/wiki/Creative_Commons_license#Seven_regularly_used_licenses\">copyright licenses</a>.<br>Default is \"<a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC By-SA 4.0</a>\". Leave blank to disable.",
+	"atom-feed-generator": "Atom Feed Generator",
+	"atom-feed-generator-tip": "A string indicating the program used to generate the Atom feed.<br> Default is \"Bludit - Flat-File CMS\". Leave blank to disable.",
+	"atom-feed-item-limit": "Atom Feed Item Limit",
+	"atom-feed-item-limit-tip": "Maximum number of items in Atom feed. Default is \"10\".",
+	"atom-feed-url": "Atom Feed URL",
+	"atom-feed-url-tip": "URL that people use to subscribe to your Atom feed."
+}
