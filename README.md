@@ -11,6 +11,23 @@ More information about Atom Feeds [at this Wikipedia page](https://en.wikipedia.
 - [Bludit](https://github.com/bludit/bludit) v3.8.1 - Not tested with any other version.
 
 
+## Version History
+
+  - v0.0.2
+
+    1. Atom feed copyright now defaults to ```DISABLE```.
+
+    2. Atom feed copyright settings menu now uses a ```select``` input.
+
+    3. Atom feed item limit settings menu now uses a ```number``` input.
+
+    4. Atom feed generator settings menu input now accepts ```À-ž``` characters.
+
+    5. More information added to settings menu sections - on-screen and mouseover.
+
+  - v0.0.1 - Initial version.
+
+
 ## Credit
 
 All inspiration for this plugin came from the [Bludit RSS Feed](https://github.com/bludit/bludit/tree/master/bl-plugins/rss) plugin.
