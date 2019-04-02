@@ -6,7 +6,7 @@ class pluginAtomFeed extends Plugin {
 	{
 		// Fields and default values for the database of this plugin
 		$this->dbFields = array(
-			'atomFeedCopyright' => 'CC By-SA 4.0',
+			'atomFeedCopyright' => '',
 			'atomFeedFile' => 'feed.atom',
 			'atomFeedGenerator' => 'Bludit - Flat-File CMS',
 			'atomFeedItemLimit' => 10
@@ -41,19 +41,39 @@ class pluginAtomFeed extends Plugin {
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('atom-feed-item-limit').'</label>';
-		$html .= '<input id="jsatomFeedItemLimit" name="atomFeedItemLimit" type="text" value="'.$atomFeedItemLimit.'">';
+		$html .= '<input id="jsatomFeedItemLimit" name="atomFeedItemLimit" type="number" title="Valid input range: -1 - 100" min="-1" max="100" value="'.$atomFeedItemLimit.'">';
 		$html .= '<span class="tip">'.$L->get('atom-feed-item-limit-tip').'</span>';
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('atom-feed-copyright').'</label>';
-		$html .= '<input id="jsatomFeedCopyright" name="atomFeedCopyright" type="text" value="'.$atomFeedCopyright.'">';
-		$html .= '<span class="tip">'.$L->get('atom-feed-copyright-tip').'</span>';
+		$html .= '<select id="jsatomFeedCopyright" name="atomFeedCopyright">';
+
+		if (!empty($atomFeedCopyright)) {
+			$html .= '<option value="'.$atomFeedCopyright.'">'.$atomFeedCopyright.'</option>';
+		} else {
+			$html .= '<option value="DISABLE">DISABLE</option>';
+		}
+
+		$html .= '<option value="CC BY 4.0">CC BY 4.0</option>';
+		$html .= '<option value="CC BY-SA 4.0">CC BY-SA 4.0</option>';
+		$html .= '<option value="CC BY-ND 4.0">CC BY-ND 4.0</option>';
+		$html .= '<option value="CC BY-NC 4.0">CC BY-NC 4.0</option>';
+		$html .= '<option value="CC BY-NC-SA 4.0">CC BY-NC-SA 4.0</option>';
+		$html .= '<option value="CC BY-NC-ND 4.0">CC BY-NC-ND 4.0</option>';
+		$html .= '<option value="DISABLE">DISABLE</option>';
+		$html .= '</select>';
+
+		if (!empty($atomFeedCopyright)) {
+			$html .= '<span class="tip">'.$L->get('atom-feed-copyright-tip').$atomFeedCopyright.'</span>';
+		} else {
+			$html .= '<span class="tip">'.$L->get('atom-feed-copyright-tip').'DISABLE</span>';
+		}
 		$html .= '</div>';
 
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('atom-feed-generator').'</label>';
-		$html .= '<input id="jsatomFeedGenerator" name="atomFeedGenerator" type="text" value="'.$atomFeedGenerator.'">';
+		$html .= '<input id="jsatomFeedGenerator" name="atomFeedGenerator" pattern="[a-zA-ZÀ-ž0-9-_. !]+" title="Valid: !, -, _, ., a-z, A-Z, À-ž, 0-9" maxlength="50" type="text" value="'.$atomFeedGenerator.'">';
 		$html .= '<span class="tip">'.$L->get('atom-feed-generator-tip').'</span>';
 		$html .= '</div>';
 
@@ -107,7 +127,7 @@ class pluginAtomFeed extends Plugin {
 		$xml .= '<link href="'.$site->domain().'" hreflang="'.Theme::lang().'" rel="alternate" type="text/html" />';
 
 		// Add copyright
-		if (!empty($atomFeedCopyright)) {
+		if (!empty($atomFeedCopyright) && ($atomFeedCopyright !== 'DISABLE')) {
 			$xml .= '<rights>'.$atomFeedCopyright.'</rights>';
 		}
 
@@ -115,7 +135,6 @@ class pluginAtomFeed extends Plugin {
 		if (!empty($atomFeedGenerator)) {
 			$xml .= '<generator>'.$atomFeedGenerator.'</generator>';
 		}
-
 
 		// Get keys of pages
 		foreach ($list as $pageKey) {
@@ -192,7 +211,7 @@ class pluginAtomFeed extends Plugin {
 	{
 		global $site;
 
-		return '<link rel="alternate" type="application/rss+xml" href="'.DOMAIN_BASE.$this->getValue('atomFeedFile').'" title="'.$site->title().' - Atom Feed">'.PHP_EOL;
+		return '<link rel="alternate" type="application/atom+xml" href="'.DOMAIN_BASE.$this->getValue('atomFeedFile').'" title="'.$site->title().' - Atom Feed">'.PHP_EOL;
 	}
 
 	public function beforeAll()
