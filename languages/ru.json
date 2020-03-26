@@ -1,0 +1,15 @@
+{
+	"plugin-data":
+	{
+		"name": "Atom Feed",
+		"description": "Создает Atom-канал для вашего сайта.<br> Этот канал находится по следующему URL: https://example.com/feed.atom"
+	},
+	"atom-feed-copyright": "Копирайт",
+	"atom-feed-copyright-tip": "Больше информации о <a href=\"https://creativecommons.org/licenses/\">копирайте и типах лицензий</a> (информация на английском).<br>По-умолчанию: Выключено. Сейчас: ",
+	"atom-feed-generator": "Фид-генератор",
+	"atom-feed-generator-tip": "Строка, указывающая программу, используемую для генерации канала Atom.<br> По-умолчанию это \"Bludit - CMS основанная лишь на файлах\". Оставьте пустым чтобы отключить.",
+	"atom-feed-item-limit": "Лимит записей в Atom-канале",
+	"atom-feed-item-limit-tip": "Максимальное количество элементов в Atom-канале.<br>По-умолчанию: \"10\". Значение \"-1\" снимает лимит (в канале будут ВСЕ записи).",
+	"atom-feed-url": "URL-адрес Atom-канала",
+	"atom-feed-url-tip": "URL, который люди будут использовать для подписки на ваш Atom-канал."
+}
